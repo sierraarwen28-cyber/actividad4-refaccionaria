@@ -13,13 +13,13 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/productos', productRoutes);
 
-// 🔹 Conexión a MongoDB
+// 🔹 Conexión Mongo
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB conectado"))
-    .catch(err => console.log("Error de conexión:", err));
+  .then(() => console.log("MongoDB conectado"))
+  .catch(err => console.log("Error de conexión:", err));
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en puerto ${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
