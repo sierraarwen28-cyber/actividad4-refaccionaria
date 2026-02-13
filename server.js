@@ -1,8 +1,22 @@
+const express = require('express');
+const mongoose = require('mongoose');
 require('dotenv').config();
-const app = require('./src/app');
-const connectDB = require('./src/config/db');
 
-connectDB();
+const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+
+const app = express();
+
+app.use(express.json());
+
+// 🔹 Rutas
+app.use('/auth', authRoutes);
+app.use('/productos', productRoutes);
+
+// 🔹 Conexión a MongoDB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB conectado"))
+    .catch(err => console.log("Error de conexión:", err));
 
 const PORT = process.env.PORT || 3000;
 
